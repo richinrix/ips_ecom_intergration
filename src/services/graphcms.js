@@ -18,37 +18,26 @@ export const getOrders = async () => {
 };
 
 export const postOrder = async (details) => {
-  console.log(details);
-  const { orderId, postageCost, productCost } = details;
-  console.log(details);
   const Nquery = gql`
     mutation MyMutation(
       $orderId: String!
       $postageCost: String!
       $productCost: String!
+      $postOfficeDestination: String!
     ) {
       createOrder(
         data: {
           orderId: $orderId
           postageCost: $postageCost
           productCost: $productCost
+          postOfficeDestination: $postOfficeDestination
         }
       ) {
         id
       }
     }
   `;
-  const query = gql`
-    mutation MyMutation(
 
-    ) {
-      createOrder(
-        data: { orderId: "565656666", postageCost: "6512", productCost: "4145156" }
-      ) {
-        id
-      }
-    }
-  `;
   const response = await request(graphqlAPI, Nquery, details);
   return response.order;
 };

@@ -19413,10 +19413,11 @@ function price(input_pincode, output_pincode) {
     };
   }
 }
-
+function getSixDigitPIN(pin) {}
 module.exports = {
   price,
   validPIN,
+  onlyCodes,
 };
 
 /* 

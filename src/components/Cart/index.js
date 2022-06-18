@@ -35,7 +35,7 @@ const Cart = (props) => {
     props.productsInComponent[0] && props.productsInComponent[0].unavailable;
 
   const checkAvailabillity = () => {
-    // 326001
+    // ! 326001
     let pin = parseInt((PIN + "").slice(0, 3));
     if (validPIN(PIN)) {
       console.log("pin valid");
@@ -66,7 +66,7 @@ const Cart = (props) => {
     setNearestAvailablePIN(nearestPIN(path, unavailablePIN));
     console.log(path);
     console.log(nearestPIN(path, unavailablePIN));
-
+    const nearest = nearestPIN(path, unavailablePIN);
     // * posting order data into graphcms
     let uid =
       Math.random().toString(36).substring(2, 15) +
@@ -76,17 +76,17 @@ const Cart = (props) => {
       postageCost: postalCharge.total + "",
       productCost: product.price + "",
       eComDestination: nearestAvailablePIN,
-      postOfficeDestination: pin,
+      postOfficeDestination: nearest + "",
     };
     console.log("post details", details);
-    // const postresult = await postOrder(details);
-    // console.log(postresult);
+    const postresult = await postOrder(details);
+    console.log(postresult);
 
     // * setting orderPlaced to true
-    // setOrderPlaced(true);
-    // setShowAddress(false);
-    // setShowPostalCost(false);
-    // setAvailable(false);
+    setOrderPlaced(true);
+    setShowAddress(false);
+    setShowPostalCost(false);
+    setAvailable(false);
   };
   const inputAddress = () => {
     return (
