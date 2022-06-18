@@ -24,6 +24,12 @@ export const postOrder = async (details) => {
       $postageCost: String!
       $productCost: String!
       $postOfficeDestination: String!
+      $productDetails: String!
+      $productName: String!
+      $trackingId: String!
+      $address: String!
+      $name: String!
+      $ipsSourcePin: String!
     ) {
       createOrder(
         data: {
@@ -31,6 +37,12 @@ export const postOrder = async (details) => {
           postageCost: $postageCost
           productCost: $productCost
           postOfficeDestination: $postOfficeDestination
+          productDetails: $productDetails
+          productName: $productName
+          trackingId: $trackingId
+          address: $address
+          name: $name
+          ipsSourcePin: $ipsSourcePin
         }
       ) {
         id

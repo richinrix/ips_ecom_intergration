@@ -20,6 +20,12 @@ const Cart = (props) => {
   const [showAddress, setShowAddress] = useState(false);
   var total = 0;
   var items = 0;
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+  });
   const [address, setAddress] = useState("");
   const [PIN, setPIN] = useState(null);
   const [available, setAvailable] = useState();
@@ -71,22 +77,34 @@ const Cart = (props) => {
     let uid =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
+    let trackingId =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
     const details = {
       orderId: uid,
+      trackingId,
+      address:
+        userDetails.address + " " + userDetails.city + " " + userDetails.state,
       postageCost: postalCharge.total + "",
       productCost: product.price + "",
-      eComDestination: nearestAvailablePIN,
-      postOfficeDestination: nearest + "",
+      ipsSourcePin: nearest + "",
+      postOfficeDestination: PIN + "",
+      name: userDetails.name,
+      productName: product.brandName,
+      productDetails: product.description,
     };
+
     console.log("post details", details);
     const postresult = await postOrder(details);
-    console.log(postresult);
+    postresult.then((res) => {
+      console.log(res);
+      setOrderPlaced(true);
+      setShowAddress(false);
+      setShowPostalCost(false);
+      setAvailable(false);
+    });
 
     // * setting orderPlaced to true
-    setOrderPlaced(true);
-    setShowAddress(false);
-    setShowPostalCost(false);
-    setAvailable(false);
   };
   const inputAddress = () => {
     return (
@@ -97,6 +115,9 @@ const Cart = (props) => {
         <div class="w-full flex items-center  ">
           <div class="w-1/2 text-base ">Full Name</div>
           <input
+            onChange={(e) =>
+              setUserDetails({ ...userDetails, name: e.target.value })
+            }
             pattern="[a-zA-Z ]*"
             required
             className="w-full  px-3 py-2 mb-3 text-left  text-gray-700 border border-gray-300 rounded-lg"
@@ -116,6 +137,9 @@ const Cart = (props) => {
         <div class="w-full flex items-center ">
           <div class="w-1/2 text-base ">Enter your Complete Address</div>
           <textarea
+            onChange={(e) =>
+              setUserDetails({ ...userDetails, address: e.target.value })
+            }
             pattern="[a-zA-Z0-9]*"
             required
             rows={3}
@@ -126,6 +150,9 @@ const Cart = (props) => {
         <div class="w-full flex items-center ">
           <div class="w-1/2 text-base ">City</div>
           <input
+            onChange={(e) =>
+              setUserDetails({ ...userDetails, city: e.target.value })
+            }
             pattern="[a-zA-Z]*"
             required
             className="w-full px-3 py-2 mb-3 text-left  text-gray-700 border border-gray-300 rounded-lg"
@@ -135,6 +162,9 @@ const Cart = (props) => {
         <div class="w-full flex items-center ">
           <div class="text-base  w-1/2 ">State</div>
           <input
+            onChange={(e) =>
+              setUserDetails({ ...userDetails, state: e.target.value })
+            }
             pattern="[a-zA-Z]*"
             required
             className="w-full px-3 py-2 mb-3 text-left  text-gray-700 border border-gray-300 rounded-lg"
