@@ -19403,7 +19403,7 @@ function price(input_pincode, output_pincode) {
         postage_amount: 138.0,
         tax: 25.0,
         door_delivery_charge: 5.0,
-        total: 167.0,
+        total: 168.0,
       };
     }
   } else {

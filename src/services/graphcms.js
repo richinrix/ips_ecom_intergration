@@ -30,6 +30,7 @@ export const postOrder = async (details) => {
       $address: String!
       $name: String!
       $ipsSourcePin: String!
+      $productImage: String!
     ) {
       createOrder(
         data: {
@@ -43,6 +44,7 @@ export const postOrder = async (details) => {
           address: $address
           name: $name
           ipsSourcePin: $ipsSourcePin
+          productImage: $productImage
         }
       ) {
         id
@@ -52,4 +54,27 @@ export const postOrder = async (details) => {
 
   const response = await request(graphqlAPI, Nquery, details);
   return response.order;
+};
+
+export const getAllOrders = async () => {
+  const query = gql`
+    query MyQuery {
+      orders {
+        address
+        createdAt
+        ipsSourcePin
+        name
+        orderId
+        postOfficeDestination
+        postageCost
+        productCost
+        productDetails
+        productName
+        trackingId
+        productImage
+      }
+    }
+  `;
+  const response = await request(graphqlAPI, query);
+  return response.orders;
 };

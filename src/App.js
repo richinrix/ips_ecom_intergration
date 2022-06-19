@@ -1,12 +1,3 @@
-// TODO : intergrate marshys  code for finding cost
-//  TODO : firebase/heroku
-//  TODO : generate order id for placed orders
-//  TODO : fake payment gateway
-
-// ? mobile app for
-
-// TODO :
-
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -17,6 +8,7 @@ import MenPage from "./pages/men";
 import WomenPage from "./pages/women";
 import CartPage from "./pages/cart";
 import WishlistPage from "./pages/wishlist";
+import TrackOrder from "./pages/trackOrder";
 import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import { connect } from "react-redux";
@@ -46,6 +38,7 @@ function App(props) {
             <Route path="/women" component={WomenPage} exact />
             <Route path="/cart" component={CartPage} exact />
             <Route path="/wishlist" component={WishlistPage} exact />
+            <Route path="/track" component={TrackOrder} exact />
           </Switch>
         </div>
       )}

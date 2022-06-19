@@ -77,9 +77,10 @@ const Cart = (props) => {
     let uid =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
-    let trackingId =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
+    // let trackingId =
+    //   Math.random().toString(36).substring(2, 15) +
+    //   Math.random().toString(36).substring(2, 15);
+    let trackingId = "";
     const details = {
       orderId: uid,
       trackingId,
@@ -92,23 +93,27 @@ const Cart = (props) => {
       name: userDetails.name,
       productName: product.brandName,
       productDetails: product.description,
+      productImage: product.imgUrl,
     };
 
     console.log("post details", details);
-    const postresult = await postOrder(details);
-    postresult.then((res) => {
-      console.log(res);
+    postOrder(details);
+    // postresult.then((res) => {
+
+    // });
+    // set time out
+    setTimeout(() => {
       setOrderPlaced(true);
       setShowAddress(false);
       setShowPostalCost(false);
       setAvailable(false);
-    });
+    }, 1000);
 
     // * setting orderPlaced to true
   };
   const inputAddress = () => {
     return (
-      <form className="w-1/2 mx-auto my-5 px-3 flex flex-col justify-center  border-2 border-gray-300 rounded-lg ">
+      <form className="w-full md:w-1/2 mx-auto my-5 px-3 flex flex-col justify-center  border-2 border-gray-300 rounded-lg ">
         <div className=" my-3 text-xl text-center  w-full  font-semibold ">
           Enter your Address
         </div>
@@ -187,7 +192,7 @@ const Cart = (props) => {
   };
   const IPSIntegration = () => {
     return (
-      <div className="w-1/2 mx-auto my-5 p-3 flex flex-col justify-center items-center border-2 border-gray-300 rounded-lg ">
+      <div className="w-full md:w-1/2 mx-auto my-5 p-3 flex flex-col justify-center items-center border-2 border-gray-300 rounded-lg ">
         <div className="text-red-500 text-lg text-center w-full">
           Direct Delivery to this PIN is not available
         </div>
@@ -213,7 +218,7 @@ const Cart = (props) => {
     let { price } = product;
     price = parseInt(price.slice(4));
     return (
-      <div className="w-1/2 mx-auto my-5 p-3 flex flex-col justify-center items-center border-2 border-gray-300 rounded-lg">
+      <div className="w-full md:w-1/2 mx-auto my-5 p-3 flex flex-col justify-center items-center border-2 border-gray-300 rounded-lg">
         <div class="w-full flex flex-col items-center justify-center">
           <div class="text-center w-full font-semibold text-2xl mb-3">
             Postage and Delivery Charge
@@ -259,7 +264,7 @@ const Cart = (props) => {
         <>
           {/* <h1>Cart is here: {props.productsInComponent}</h1> */}
           {/* imgUrl, brandName, description, size, price */}
-          <CartContainer>
+          <CartContainer className="flex md:flex-row flex-col">
             <CardContainerLeft>
               {props.productsInComponent.map((product) => {
                 total += Number(product?.price.slice(4));
