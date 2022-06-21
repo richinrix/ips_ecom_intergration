@@ -26,22 +26,21 @@ function App(props) {
   return (
     // <Provider store={store}>
     <Router>
-      {login ? (
+      {/* {login ? (
         <Login />
-      ) : (
-        <div className="app">
-          {/* <h1>Myntra clone begins</h1> */}
-          <Navbar />
-          <Switch>
-            <Route path="/" component={HomePage} exact />
-            <Route path="/men" component={MenPage} exact />
-            <Route path="/women" component={WomenPage} exact />
-            <Route path="/cart" component={CartPage} exact />
-            <Route path="/wishlist" component={WishlistPage} exact />
-            <Route path="/track" component={TrackOrder} exact />
-          </Switch>
-        </div>
-      )}
+      ) : ( */}
+      <div className="app">
+        <Navbar />
+        <Switch>
+          <Route path="/" component={HomePage} exact />
+          <Route path="/men" component={MenPage} exact />
+          <Route path="/women" component={WomenPage} exact />
+          <Route path="/cart" component={CartPage} exact />
+          <Route path="/wishlist" component={WishlistPage} exact />
+          <Route path="/track" component={TrackOrder} exact />
+        </Switch>
+      </div>
+      {/* )} */}
     </Router>
     // </Provider>
   );
