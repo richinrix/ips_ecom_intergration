@@ -23,7 +23,7 @@ const TrackOrder = () => {
     } = order;
     console.log(trackingId);
     return (
-      <div className="  my-10 nue-shadow p-5 rounded-md">
+      <div className="  my-10 neu-shadow p-5 rounded-md">
         <div id={orderId} className="flex items-center justify-between w-full ">
           <div className="h-full flex">
             <div
