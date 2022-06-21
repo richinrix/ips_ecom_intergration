@@ -31,14 +31,9 @@ const Navbar = (props) => {
         <NavbarRoute to="/women">
           <NavH3 borderColor="pink">Women</NavH3>
         </NavbarRoute>
-        {/* <NavbarRoute>
-          <h3>Kids</h3>
-        </NavbarRoute>
-        <NavbarRoute>
-          <h3>Home & Living</h3>
-        </NavbarRoute> */}
-        <NavbarRoute to="/cart">
-          <NavH3 borderColor="green">Cart</NavH3>
+
+        <NavbarRoute to="/track">
+          <NavH3 borderColor="blue">Track</NavH3>
         </NavbarRoute>
       </NavbarLeft>
       <NavbarRight>
